@@ -1,0 +1,13 @@
+{"namespace": "Evident",
+	"type": "record",
+	"name": "Evident.com",
+	"doc": "Evro schema for Evident",
+	"fields": [
+		{"name":"export_date","type":"string", "doc": "Export date of the "},
+		{"name":"session_id","type":"int", "doc": "sessionid"},
+		{"name":"user","type":"int", "doc":"The user id from he platform"},
+		{"name":"answers_amount","type":"int","doc": "the number amout of docks"},
+		{"name":"test","type":"int","doc": "user id numers"}
+	]
+
+}

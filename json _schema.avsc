@@ -1,0 +1,31 @@
+{"namespace": "Evident",
+	"type": "record",
+	"name": "Evident.com",
+	"doc": "Evro schema for Evident",
+	"fields": [
+		{"name":"export_date","type":"string", "doc": "Export date of the "},
+		{"name":"session_id","type":"int", "doc": "sessionid"},
+		{"name":"user","type":"int", "doc":"The user id from he platform"},
+		{"name":"answers_amount","tyjson pe":"int"},
+		"user": "300",
+		"answers_amount": 2,
+		"answers": [{
+		"ID": 656,
+		"234": {
+			"user_type": "landlord"
+		},
+		"454": {
+			"answer_one": "334",
+			"answer_two": "yes",
+			"answer_three": "25.000€"
+		},
+		"121": {
+
+		}
+	},
+		{"ID": 600, "234": {"user_type": "home_owner"},
+		"454": {"answer_one": "250","answer_two": "yes","answer_three": "18.500€"},
+		"121": {		}
+	}]]
+
+}
