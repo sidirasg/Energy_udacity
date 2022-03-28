@@ -22,7 +22,7 @@ schema_file = 'json _schema1.avsc'
 schema2= Schema(schema_file)
 
 
-parsed_schema = schema2.parse()
+parsed_schema = schema.parse()
 
 #data for validation
 data_v={"export_date":"03/12/2022","session_id":35,"user": 40, "answers_amount": 7, "test": 9}
