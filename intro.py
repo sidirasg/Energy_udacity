@@ -108,4 +108,10 @@ import calendar
 #filter the data
 df3.filter(df3.id=='MAC000002').count()
 
+#household convert spark  dataframe
+householdd=spark.createDataFrame(df_household)
+
+#Join two DataSet
+df4=df3.join(householdd, df3.id == householdd.LCLid, 'left')
+
 
