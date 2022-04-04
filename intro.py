@@ -150,21 +150,10 @@ df_all8=df5.groupby("id","std","year","month","date","hour").sum("kwh")
 #make ne aggregation per data
 
 
-from pyspark.sql import functions as F
+from pyspark.sql import functions as f
 
 df_all_statistics=df5.groupby("id","std","year","month","date").agg(f.sum("kwh"),f.avg("kwh"),f.max("kwh"),f.min("kwh"),f.count("kwh"),f.stddev_pop("kwh"))
 
-
-print("Before casting")
-df_all8.printSchema()
-
-df_all_hours=df_all8.withColumn("hours",df_all8['hour'].cast('integer'))
-print("After casting")
-df_all_hours.printSchema()
-pivot_df_all=df_all_hours.groupby("id","year","month","date").pivot("hours").sum("sum(kwh)")
-#dataset = pivot_df_all.groupby("id","year","month","date").sum("sum(kwh)").avg("sum(kwh)")("sum(kwh)").min("sum(kwh)").count("sum(kwh)").std("sum(kwh)")
-
-pivot_df_all.count()
 
 
 dataset=pivot_df_all.join(id, pivot_df_all.id == df_all_statistics.id, 'left')
