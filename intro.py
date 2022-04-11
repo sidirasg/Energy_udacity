@@ -1,4 +1,6 @@
 import cassandra
+import matplotlib.pyplot as plt
+
 
 from  cassandra.cluster import Cluster
 try:
@@ -35,7 +37,7 @@ from pyspark.sql.functions import *
 spark = SparkSession.builder.master("local[1]") \
                     .appName('SparkByExamples.com') \
                     .getOrCreate()
-df = spark.read.option("header",True).csv("data/CC_LCL-FullData.csv")
+df = spark.read.option("header",True).csv("data/CC_LCL-FullData.csv",inferSchema=True,header=True)
 df.printSchema()
 
 df = df.withColumn("DateTime",df.DateTime.astype('Timestamp'))
@@ -124,6 +126,8 @@ df5=df4.withColumn("kwh", df4.kwh.cast('double'))
 dff=df3.filter(df3.id=='MAC000002')
 
 
+
+
 #innerjoin with household and energy
 #Apply filter to have better result
 df6=dff.join(householdd, dff.id == householdd.LCLid, 'left')
@@ -153,7 +157,17 @@ df_all8=df5.groupby("id","std","year","month","date","hour").sum("kwh")
 from pyspark.sql import functions as f
 
 df_all_statistics=df5.groupby("id","std","year","month","date").agg(f.sum("kwh"),f.avg("kwh"),f.max("kwh"),f.min("kwh"),f.count("kwh"),f.stddev_pop("kwh"))
+finaldf=df_all_statistics.toPandas()
+
+print(finaldf.describe())
 
 
+finaldf.boxplot()
+plt.show()
 
-dataset=pivot_df_all.join(id, pivot_df_all.id == df_all_statistics.id, 'left')
+finaldf.hist()
+plt.show()
+finaldf.groupby('class').sum(kwh).hist(alpha=0.4)
+
+from pandas.plotting import scatter_matrix
+scatter_matrix(finaldfha=0.2, figsize=(6, 6), diagonal='kde')
