@@ -71,7 +71,7 @@ dff_2014=df5.filter(df5.year=='2014')
 df8_hours=dff_2012.withColumn("hours",dff_2012['hour'].cast('integer'))
 
 
-Energy_Total2012 = dff_2012.groupby("year").sum("kwh")
+Energy_Total2012 = dff_2012.groupby("year").sum("kwh").toDF()
 
 #aggragate function and hours cosumtion at coloumns
 pivot_df_2012 = df_4.groupby("id","year","month","date").pivot("hour").sum("kwh")
